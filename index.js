@@ -48,8 +48,8 @@ app.post("/getPostId", async (req, res) => {
 app.post("/editPost", async (req, res) => {
   try {
     const [update] = await db.execute(
-      "UPDATE `posts` SET `title`=?, `description`=? WHERE id = ?",
-      [req.body.title, req.body.description, req.body.ids]
+      "UPDATE `posts` SET `title`=?, `name`=?,`description`=? WHERE id = ?",
+      [req.body.title, req.body.name, req.body.description, req.body.ids]
     );
     if (update.affectedRows === 1) {
       return res.json({ success: true });
