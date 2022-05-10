@@ -4,6 +4,7 @@ const router = require("express").Router();
 
 router.post("/", post.upload, post.addPost);
 router.get("/", post.getAllPosts);
+router.get("/get", post.findAll);
 router.get("/getPostComment/:id", post.getPostComment);
 router.get("/:id", post.getOnePost);
 router.put("/:id", post.updatePost);
