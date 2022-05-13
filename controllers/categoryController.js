@@ -28,14 +28,6 @@ const getAllCategories = async (req, res) => {
   res.status(200).send(category);
 };
 
-// const getOneCategory = async (req, res) => {
-//   let id = req.params.id;
-//   let category = await Category.findByPk(id, {
-//     include: [{ model: Post, as: "post" }],
-//   });
-//   res.status(200).send(category);
-// };
-
 const addPost = async (req, res) => {
   const { categoryId, postId } = req.body;
   return Category.findByPk(categoryId)

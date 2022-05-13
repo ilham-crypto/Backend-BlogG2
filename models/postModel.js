@@ -10,6 +10,9 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
     },
+    kategori: {
+      type: DataTypes.INTEGER,
+    },
     description: {
       type: DataTypes.TEXT,
     },

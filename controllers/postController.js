@@ -25,6 +25,7 @@ const addPost = async (req, res) => {
     image: req.file.path,
     title: req.body.title,
     name: req.body.name,
+    kategori: req.body.kategori,
     description: req.body.description,
   };
 
@@ -56,19 +57,14 @@ const findAll = async (req, res) => {
 };
 
 const getAllPosts = async (req, res) => {
-  let posts = await Post.findAll({
-    include: [
-      {
-        model: Category,
-        as: "category",
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
-      },
-    ],
-  });
-  res.status(200).send(posts);
+  try {
+    const posts = await Post.findAll({
+      attributes: ["id", "image", "title", "name", "kategori", "description"],
+    });
+    res.json(posts);
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 const getOnePost = async (req, res) => {

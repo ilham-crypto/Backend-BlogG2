@@ -52,4 +52,14 @@ db.post.belongsToMany(db.category, {
   foreignKey: "post_id",
 });
 
+// //one to many
+// db.category.hasMany(db.post, {
+//   as: "post",
+//   foreignKey: "category_id",
+// });
+// db.category.hasMany(db.post, {
+//   as: "category",
+//   foreignKey: "post_id",
+// });
+
 module.exports = db;

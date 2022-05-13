@@ -20,31 +20,6 @@ const getAllComments = async (req, res) => {
   res.status(200).send(comments);
 };
 
-// const getOneComment = async (req, res) => {
-//   let id = req.params.id;
-//   let post = await Comment.findByPk(id, {
-//     include: [
-//       {
-//         model: Post,
-//         as: "post",
-//         attributes: ["id", "name", "image", "title", "description"],
-//         through: {
-//           attributes: [],
-//         },
-//       },
-//     ],
-//   });
-//   res.status(200).send(post);
-// };
-
-// const updateComment = async (req, res) => {
-//   let id = req.params.id;
-
-//   const comment = await Comment.update(req.body, { where: { id: id } });
-
-//   res.status(200).send(comment);
-// };
-
 const deleteComment = async (req, res) => {
   let id = req.params.id;
 
@@ -56,7 +31,5 @@ const deleteComment = async (req, res) => {
 module.exports = {
   addComment,
   getAllComments,
-  // updateComment,
   deleteComment,
-  // getOneComment,
 };
