@@ -21,11 +21,12 @@ const getPagingData = (data, page, limit) => {
 };
 
 const addPost = async (req, res) => {
+  // const id = req.params.id;
   let info = {
+    category_id: req.body.category_id,
     image: req.file.path,
     title: req.body.title,
     name: req.body.name,
-    kategori: req.body.kategori,
     description: req.body.description,
   };
 
@@ -57,14 +58,16 @@ const findAll = async (req, res) => {
 };
 
 const getAllPosts = async (req, res) => {
-  try {
-    const posts = await Post.findAll({
-      attributes: ["id", "image", "title", "name", "kategori", "description"],
-    });
-    res.json(posts);
-  } catch (error) {
-    console.log(error);
-  }
+  let post = await Post.findAll({
+    include: [
+      {
+        model: Category,
+        as: "category",
+        attributes: ["id", "name"],
+      },
+    ],
+  });
+  res.status(200).send(post);
 };
 
 const getOnePost = async (req, res) => {
@@ -75,9 +78,6 @@ const getOnePost = async (req, res) => {
         model: Category,
         as: "category",
         attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        },
       },
     ],
   });

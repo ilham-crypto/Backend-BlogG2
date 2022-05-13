@@ -41,25 +41,26 @@ db.comment.belongsTo(db.post, {
 });
 
 // Many to Many
-db.category.belongsToMany(db.post, {
-  through: "post_category",
-  as: "post",
-  foreignKey: "category_id",
-});
-db.post.belongsToMany(db.category, {
-  through: "post_category",
-  as: "category",
-  foreignKey: "post_id",
-});
-
-// //one to many
-// db.category.hasMany(db.post, {
+// db.category.belongsToMany(db.post, {
+//   through: "post_category",
 //   as: "post",
 //   foreignKey: "category_id",
 // });
-// db.category.hasMany(db.post, {
+// db.post.belongsToMany(db.category, {
+//   through: "post_category",
 //   as: "category",
 //   foreignKey: "post_id",
 // });
+
+//one to many
+db.category.hasMany(db.post, {
+  foreignKey: "category_id",
+  as: "post",
+});
+
+db.post.belongsTo(db.category, {
+  foreignKey: "category_id",
+  as: "category",
+});
 
 module.exports = db;

@@ -19,14 +19,19 @@ const getAllCategories = async (req, res) => {
         model: Post,
         as: "post",
         attributes: ["id", "name", "image", "title", "description"],
-        through: {
-          attributes: [],
-        },
       },
     ],
   });
   res.status(200).send(category);
 };
+
+// const getOneCategory = async (req, res) => {
+//   let id = req.params.id;
+//   let category = await Category.findByPk(id, {
+//     include: [{ model: Post, as: "post" }],
+//   });
+//   res.status(200).send(category);
+// };
 
 const addPost = async (req, res) => {
   const { categoryId, postId } = req.body;
@@ -83,9 +88,6 @@ const getOneCategory = async (req, res) => {
         model: Post,
         as: "post",
         attributes: ["id", "name", "image", "title", "description"],
-        through: {
-          attributes: [],
-        },
       },
     ],
   });
