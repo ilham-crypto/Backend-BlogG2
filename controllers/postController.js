@@ -21,12 +21,11 @@ const getPagingData = (data, page, limit) => {
 };
 
 const addPost = async (req, res) => {
-  // const id = req.params.id;
   let info = {
     category_id: req.body.category_id,
     image: req.file.path,
     title: req.body.title,
-    name: req.body.name,
+    username: req.body.username,
     description: req.body.description,
   };
 
